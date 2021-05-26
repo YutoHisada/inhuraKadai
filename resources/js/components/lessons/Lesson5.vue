@@ -24,6 +24,10 @@
                             <div class="align-self-center">
                                 <input class="form-control" v-model="searchItemCode">
                             </div>
+                            <div class="align-self-center">在庫数：</div>
+                            <div class="align-self-center">
+                                <input class="form-control" v-model="searchStockNum">
+                            </div>
                         </div>
                     </div>
                     <table class="table table-sm" key="processes">
@@ -46,6 +50,8 @@
                         </tbody>
                     </table>
 
+                    <!-- {{ filterInventories }} -->
+                    
                     <hr>
                     <div class="alert alert-warning" role="alert">
                         <i class="fas fa-book-reader"></i> 在庫数でフィルタリングしてみましょう。（例）200と入力したら在庫数が200以上の物を表示
@@ -72,23 +78,27 @@ export default {
                 { id: 5, item_code: 'ITEM0005', item_name: '商品００００５', stock_num: 500, real_stock_num: 311 },
             ],
             searchItemCode: '',
+            searchStockNum: '',
         }
     },
     mounted () {
-        //
+        
     },
     watch: {
-        //
+        
     },
     computed: {
         filterInventories() {
-            return this.inventories
+            // 商品コードでフィルタリング
+            const array = this.inventories.filter(v => v.item_code.match(this.searchItemCode))
+            // さらに在庫数でフィルタリング
+            return array.filter(v => v.stock_num >= this.searchStockNum)
         }
     },
     methods: {
         onBack() {
             this.$router.push({ name: 'home' })
-        }
+        },
     },
 }
 </script>

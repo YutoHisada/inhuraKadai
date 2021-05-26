@@ -25,6 +25,25 @@
                     </div>
                     
                     // ここにデータを表示
+                    <div id='#app'>
+
+                        <table class="table table-sm" key="processes">
+                            <thead>
+                                <tr>
+                                    <th class="text-center bg-primary text-white">ID</th>
+                                    <th class="text-center bg-primary text-white">NAME</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="bg-white" v-for="(result, index) in results" :key="index">
+                                    <td class="text-center align-middle">{{ result.id }}</td>
+                                    <td class="text-center align-middle">{{ result.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{ results }}
+                    </div>
 
                     <hr>
                     <div class="quesion-header">２．新規テーブル（customers）を作成してそのデータを画面に表示しましょう</div>
@@ -56,6 +75,37 @@
                     </div>
                     
                     // ここにデータを表示
+                    <div id='#app'>
+                        <table class="table table-sm" key="processes">
+                            <thead>
+                                <tr>
+                                    <th class="text-center bg-primary text-white">ID</th>
+                                    <th class="text-center bg-primary text-white">CODE</th>
+                                    <th class="text-center bg-primary text-white">NAME</th>
+                                    <th class="text-center bg-primary text-white">POSTAL_CODE</th>
+                                    <th class="text-center bg-primary text-white">ADDRESS</th>
+                                    <th class="text-center bg-primary text-white">TEL</th>
+                                    <th class="text-center bg-primary text-white">FAX</th>
+                                    <th class="text-center bg-primary text-white">CLOSING_DAY</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="bg-white" v-for="(result, index) in results2" :key="index">
+                                    <td class="text-center align-middle">{{ result.id }}</td>
+                                    <td class="text-center align-middle">{{ result.code }}</td>
+                                    <td class="text-center align-middle">{{ result.name }}</td>
+                                    <td class="text-center align-middle">{{ result.postal_code }}</td>
+                                    <td class="text-center align-middle">{{ result.address }}</td>
+                                    <td class="text-center align-middle">{{ result.tel }}</td>
+                                    <td class="text-center align-middle">{{ result.fax }}</td>
+                                    <td class="text-center align-middle">{{ result.closing_day }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        {{ results2 }}
+                    </div>
 
                 </div>
             </div>
@@ -72,6 +122,7 @@ export default {
     data () {
         return {
             results: null,
+            results2: null,
             items: null,
         }
     },
@@ -90,8 +141,11 @@ export default {
             // routes/api.phpにルーティングを設定する
             // Route::get('lesson/selector', 'API\LessonController@index');
             // ↑これがControllerとの紐づけ定義
-            const {data} = await axios.get('/api/lesson/selector')
-            this.results = data
+            const data = await axios.get('/api/lesson/selector')
+            this.results = data.data
+
+            const data2 = await axios.get('/api/customer/index')
+            this.results2 = data2.data
         },
         onBack() {
             this.$router.push({ name: 'home' })

@@ -21,6 +21,12 @@
                         <div class="mr-4">
                             <button type="button" class="btn btn-primary" @click="onNext">Leeson8-1へ</button>
                         </div>
+
+                        <input type="text" v-model="text">
+                        
+                        <div class="mr-4">
+                            <button type="button" class="btn btn-primary" @click="twoNext">Leeson8-2へ</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,7 +56,10 @@ export default {
     },
     methods: {
         onNext() {
-            this.$router.push({ name: 'lesson8-1' })
+            this.$router.push({ name: 'lesson8-1'})
+        },
+        twoNext() {
+            this.$router.push({ name: 'lesson8-2', params: {text: this.text}})
         },
         onBack() {
             this.$router.push({ name: 'home' })

@@ -20,6 +20,10 @@
                             <div class="align-self-center">
                                 <input class="form-control" v-model="items.info.version">
                             </div>
+                            <div class="align-self-center">オリジナル：</div>
+                            <div class="align-self-center">
+                                <input class="form-control" v-model="origin.info.seed">
+                            </div>
                         </div>
                     </div>
 
@@ -27,6 +31,11 @@
                     <div class="alert alert-warning" role="alert">
                         <i class="fas fa-book-reader"></i> 応用編：公開されているAPIを使ってデータを取得してましょう。「http://smsurf.app-rox.com/api/」
                     </div>
+                    <div class="align-self-center">公開APIデータ：</div>
+                    <div class="align-self-center">
+                        <input class="form-control" v-model="results">
+                    </div>
+                    <!-- {{ results }} -->
                 </div>
             </div>
         </div>
@@ -42,6 +51,9 @@ export default {
     data () {
         return {
             items: null,
+            origin: null,
+            api: null,
+            results: null,
         }
     },
     mounted () {
@@ -61,7 +73,14 @@ export default {
             const {data} = await axios.get('https://randomuser.me/api/')
             // 取得したデータはchromeのデバッグツールで確認できます。
             // https://qiita.com/nonkapibara/items/8b587013b6b817d6dfc4
+            console.log(data)
             this.items = data
+            this.origin = data
+
+            const nhk = await axios.get("https://api.nhk.or.jp/v2/pg/genre/270/e1/0700/2021-05-14.json?key=RGhYm6vfIiIRGtcMWSgjARjRsUvBQSRt")
+            
+            this.results = nhk.data.list.e1.[0].service.name
+
         },
         onBack() {
             this.$router.push({ name: 'home' })

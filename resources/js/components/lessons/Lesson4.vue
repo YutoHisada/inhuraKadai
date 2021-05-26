@@ -28,6 +28,18 @@
                         </thead>
 
                         <tbody>
+                            <!-- v-forのエラーは警告文なので実行はできる -->
+                            <!-- <tr class="bg-white" v-for="row in inventories"> -->
+                            <tr class="bg-white" v-for="(row, index) in inventories" :key="index">
+                                <!-- <td class="text-center align-middle">{{ row.id }}</td> -->
+                                <td class="text-center align-middle">{{ row.item_code }}</td>
+                                <td class="text-center align-middle">{{ row.item_name }}</td>
+                                <td class="text-center align-middle">{{ row.stock_num }}</td>
+                                <td class="text-center align-middle">{{ row.real_stock_num }}</td>
+                            </tr>
+                        </tbody>
+
+                        <!-- <tbody>
                             <tr class="bg-white">
                                 <td class="text-center align-middle">00001</td>
                                 <td class="text-center align-middle">商品名0001</td>
@@ -46,7 +58,8 @@
                                 <td class="text-center align-middle">300</td>
                                 <td class="text-center align-middle">298</td>
                             </tr>
-                        </tbody>
+                        </tbody> -->
+
                     </table>
                 </div>
             </div>

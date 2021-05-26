@@ -102,6 +102,11 @@ const router = new VueRouter({
         { name: 'item.create', path: '/item/create', component: require('./components/items/CreateUpdate.vue').default, props: true },
         { name: 'item.show', path: '/item/show/:item_id', component: require('./components/items/CreateUpdate.vue').default, props: true },
 
+        // 顧客
+        { name: 'customer', path: '/customer', component: require('./components/customers/Index.vue').default },
+        { name: 'customer.create', path: '/customer/create', component: require('./components/customers/CreateUpdate.vue').default, props: true },
+        { name: 'customer.show', path: '/customer/show/:item_id', component: require('./components/customers/CreateUpdate.vue').default, props: true },
+
         // Lesson
         { name: 'lesson1', path: '/lesson1', component: require('./components/lessons/Lesson1.vue').default },
         { name: 'lesson2', path: '/lesson2', component: require('./components/lessons/Lesson2.vue').default },
@@ -113,6 +118,9 @@ const router = new VueRouter({
         { name: 'lesson8', path: '/lesson8', component: require('./components/lessons/Lesson8.vue').default },
         { name: 'lesson9', path: '/lesson9', component: require('./components/lessons/Lesson9.vue').default },
         { name: 'lesson10', path: '/lesson10', component: require('./components/lessons/Lesson10.vue').default },
+
+        { name: 'lesson8-1', path: '/lesson8-1', component: require('./components/lessons/Lesson8-1.vue').default },
+        { name: 'lesson8-2', path: '/lesson8-2', component: require('./components/lessons/Lesson8-2.vue').default, props: true },
 
         // not found
         { path: '*', component: require('./components/commons/NotFoundComponent.vue').default },
@@ -139,7 +147,7 @@ const store = new Vuex.Store({
     },
     actions: {
         getUser (context) {
-          context.commit('getUser')
+            context.commit('getUser')
         }
     },
     plugins: [createPersistedState()],

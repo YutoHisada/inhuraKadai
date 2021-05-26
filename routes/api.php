@@ -48,7 +48,17 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('item/{item}', 'API\ItemController@destroy');
     Route::get('item/selector', 'API\ItemController@selector');
 
+    // 顧客
+    Route::get('customer', 'API\CustomerController@index');
+    Route::post('customer', 'API\CustomerController@store');
+    Route::get('customer/{item}', 'API\CustomerController@show');
+    Route::put('customer/{item}', 'API\CustomerController@update');
+    Route::delete('customer/{item}', 'API\CustomerController@destroy');
+
     Route::get('lesson/selector', 'API\LessonController@index');
+
+    // 自分で追加した物
+    Route::get('customer/index', 'API\CustomerController@index');
     ////
 
 });
